@@ -8,11 +8,13 @@ export const getUserByEmail = (email: string) => {
   return data.Users.find((user) => user.email === email);
 };
 
-export const createUser = (user: Omit<User, "id">) => {
+export const createUser = (user: Pick<User, "email" | "password">) => {
   const newUser = {
     id: data.Users.length + 1,
+    name: "",
     ...user,
   };
 
   data.Users.push(newUser);
+  return newUser;
 };

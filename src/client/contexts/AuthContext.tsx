@@ -30,26 +30,96 @@ type AuthProviderProps = {
 const AuthProvider = ({ children }: AuthProviderProps) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
-
     // check if user is logged in
     useEffect(() => {
-        // check if user is logged in
-        setLoading(false);
+        checkAuth();
     }, []);
+
+    const checkAuth = async () => {
+        try {
+            const res = await fetch("/api/auth/check", {
+                method: "GET",
+            });
+            const data = await res.json();
+            if (data.success) {
+                setUser({
+                    id: data.id,
+                    email: data.email,
+                });
+            }
+            setLoading(false);
+        } catch (err) {
+            setLoading(false);
+        }
+    };
 
     // login user
     const login = async (email: string, password: string) => {
-        // login user
+        setLoading(true);
+
+        try {
+            const res = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setUser({
+                    id: data.id,
+                    email: data.email,
+                });
+            }
+            setLoading(false);
+        } catch (err) {
+            setUser(null);
+            setLoading(false);
+        }
     };
 
     // register user
     const register = async (email: string, password: string) => {
-        // register user
+        setLoading(true);
+
+        try {
+            const res = await fetch("/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, password }),
+            });
+            const data = await res.json();
+            if (data.success) {
+                setUser({
+                    id: data.id,
+                    email: data.email,
+                });
+            }
+            setLoading(false);
+        } catch (err) {
+            setUser(null);
+            setLoading(false);
+        }
     };
 
     // logout user
-    const logout = () => {
-        // logout user
+    const logout = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch("/api/auth/logout", {
+                method: "GET",
+            });
+            setLoading(false);
+            setUser(null);
+            window.location.href = "/login";
+        } catch (err) {
+            setLoading(false);
+            setUser(null);
+            window.location.href = "/login";
+        }
     };
 
     const value = { user, login, logout, register, loading };

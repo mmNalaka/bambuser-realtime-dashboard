@@ -1,9 +1,9 @@
 // Simple in-memory data store
 export type User = {
   id: number;
-  name: string;
   email: string;
   password: string;
+  name?: string;
 };
 
 export type Metric = {
@@ -65,11 +65,22 @@ const Metrics: Metric[] = [
     name: "Disk",
     value: 34,
     color: "#a78bfa",
-    unitSymbol: "%",
+    unitSymbol: "Gb",
     createdAt: new Date(),
     createdBy: 1,
     min: 23,
     max: 98,
+  },
+  {
+    id: 4,
+    name: "Network",
+    value: 87,
+    color: "#EF6262",
+    unitSymbol: "Mb/s",
+    createdAt: new Date(),
+    createdBy: 1,
+    min: 12,
+    max: 87,
   },
 ];
 
@@ -100,4 +111,4 @@ const MetricsChangeLog = [
   },
 ];
 
-export { Users, Metrics, MetricsChangeLog };
+export const data = { Users, Metrics, MetricsChangeLog };

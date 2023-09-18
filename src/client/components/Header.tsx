@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { Logo } from './Logo';
 import { cn } from '../lib/utils';
+import { useAuth } from '../contexts/AuthContext';
 
 const navigation = [
     { name: 'Dashboard', href: '/' },
@@ -11,9 +12,7 @@ const navigation = [
 
 
 export default function Header() {
-    const location = useLocation();
-
-    const isCurrentPath = (path: string) => location.pathname === path;
+    const { logout } = useAuth();
 
     return (
         <header className="bg-white shadow-sm">
@@ -59,6 +58,7 @@ export default function Header() {
                                     <Menu.Item>
                                         {({ active }) => (
                                             <button
+                                                onClick={logout}
                                                 className={cn(
                                                     active ? 'bg-gray-100' : '',
                                                     'flex w-full px-4 py-2 text-sm text-gray-700'

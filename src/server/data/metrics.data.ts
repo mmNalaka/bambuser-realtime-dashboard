@@ -6,7 +6,7 @@ export type CreatePayload = Pick<
 >;
 export type UpdatePayload = Pick<
   Metric,
-  "id" | "value" | "color" | "unitSymbol"
+  "id" | "name" | "value" | "color" | "unitSymbol"
 >;
 
 export const getMetrics = () => {
@@ -36,6 +36,9 @@ export const updateMetricValue = (metric: UpdatePayload) => {
     data.Metrics[index] = {
       ...data.Metrics[index],
       value: metric.value,
+      color: metric.color || data.Metrics[index].color,
+      unitSymbol: metric.unitSymbol || data.Metrics[index].unitSymbol,
+      name: metric.name || data.Metrics[index].name,
       min: Math.min(data.Metrics[index].min, metric.value),
       max: Math.max(data.Metrics[index].max, metric.value),
     };

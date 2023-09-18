@@ -6,8 +6,8 @@ import { TextInput } from "../components/TextInput"
 import { useAuth } from "../contexts/AuthContext"
 import { useEffect } from "react"
 
-export const LoginPage = () => {
-    const { loading, login, user } = useAuth();
+export const RegisterPage = () => {
+    const { loading, register, user } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -20,7 +20,7 @@ export const LoginPage = () => {
         const email = target.email.value;
         const password = target.password.value;
 
-        await login(email, password);
+        await register(email, password);
     };
 
     // redirect if user is logged in
@@ -35,7 +35,7 @@ export const LoginPage = () => {
             <div className="flex flex-col justify-center sm:mx-auto sm:w-full sm:max-w-sm">
                 <Logo height={42} />
                 <h2 className="mt-6 text-2xl font-bold leading-9 tracking-tight text-center text-gray-900">
-                    Sign in to your account
+                    Create an account
                 </h2>
             </div>
 
@@ -52,7 +52,6 @@ export const LoginPage = () => {
                                 type="email"
                                 autoComplete="email"
                                 required
-                                defaultValue="admin@bambuser.com"
                             />
                         </div>
                     </div>
@@ -62,11 +61,6 @@ export const LoginPage = () => {
                             <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                                 Password
                             </label>
-                            <div className="text-sm">
-                                <a href="#" className="font-semibold text-slate-800 hover:text-late-600">
-                                    Forgot password?
-                                </a>
-                            </div>
                         </div>
                         <div className="mt-2">
                             <TextInput
@@ -75,21 +69,20 @@ export const LoginPage = () => {
                                 type="password"
                                 autoComplete="current-password"
                                 required
-                                defaultValue="admin"
                             />
                         </div>
                     </div>
 
                     <div>
                         <Button type="submit" disabled={loading}>
-                            Sign in
+                            Create account
                         </Button>
                     </div>
                 </form>
                 <p className="mt-10 text-sm text-center text-gray-500">
-                    Not a member?{' '}
+                    Do you have an account?{' '}
                     <a href="/register" className="font-semibold leading-6 text-slate-800 hover:text-slate-600">
-                        Sign up now
+                        Log in
                     </a>
                 </p>
             </div>
