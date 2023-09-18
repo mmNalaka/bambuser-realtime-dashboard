@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type User = {
     id: number;
@@ -63,7 +63,7 @@ const useAuth = () => {
         throw new Error("useAuth must be used within an AuthProvider");
     }
 
-    return AuthContext;
+    return useContext(AuthContext);
 }
 
 export {

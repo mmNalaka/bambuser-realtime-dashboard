@@ -1,18 +1,34 @@
 
-import { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { LoginPage } from "./pages/LoginPage";
+import { DashboardPage } from "./pages/DashboardPage";
 
-import reactLogo from "./assets/react.svg";
-import { AppLayout } from "./components/AppLayout";
+
+
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <DashboardPage />,
+    },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
+    {
+      path: "/register",
+      element: <div>register</div>,
+    },
+    {
+      path: "*",
+      element: <p>Not Found</p>,
+    }
+  ]
+);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div>
-      <AppLayout>
-        test
-      </AppLayout>
-    </div>
+    <RouterProvider router={router} fallbackElement={<p>Initial Load...</p>} />
   );
 }
 
