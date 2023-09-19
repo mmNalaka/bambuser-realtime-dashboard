@@ -1,6 +1,5 @@
 import { Fragment } from 'react';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { useLocation } from 'react-router-dom';
+import { Menu, Transition } from '@headlessui/react';
 
 import { Logo } from './Logo';
 import { cn } from '../lib/utils';
@@ -17,12 +16,12 @@ export default function Header() {
     return (
         <header className="bg-white shadow-sm">
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
+                <div className="flex items-center justify-between h-16">
                     <div className="flex">
                         <div className="flex items-center flex-shrink-0">
                             <Logo height={24} />
                         </div>
-                        <div className="sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                        <div className="ml-4 sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                             {navigation.map((item) => (
                                 <a
                                     key={item.name}

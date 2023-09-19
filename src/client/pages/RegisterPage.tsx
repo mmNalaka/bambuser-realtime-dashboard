@@ -81,7 +81,7 @@ export const RegisterPage = () => {
                 </form>
                 <p className="mt-10 text-sm text-center text-gray-500">
                     Do you have an account?{' '}
-                    <a href="/register" className="font-semibold leading-6 text-slate-800 hover:text-slate-600">
+                    <a href="/login" className="font-semibold leading-6 text-slate-800 hover:text-slate-600">
                         Log in
                     </a>
                 </p>

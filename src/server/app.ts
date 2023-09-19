@@ -12,9 +12,11 @@ import {
 } from "./modules/auth.module";
 import {
   createMetricHandler,
+  getChangeLogHandler,
   getMetricsHandler,
   updateMetricHandler,
 } from "./modules/metrics.modules";
+import { errorHandler } from "./middlewares/error-handler.mw";
 
 const app = express();
 
@@ -35,5 +37,8 @@ app.post("/api/auth/register", registerHandler);
 app.get("/api/metrics", isAuthenticated, getMetricsHandler(app));
 app.post("/api/metrics", isAuthenticated, createMetricHandler(app));
 app.put("/api/metrics/:id", isAuthenticated, updateMetricHandler(app));
+app.get("/api/metrics/changelog", getChangeLogHandler);
+
+app.use(errorHandler);
 
 export { app };

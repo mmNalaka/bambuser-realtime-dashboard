@@ -29,7 +29,7 @@ export const createMetric = (metric: CreatePayload) => {
   return newMetric;
 };
 
-export const updateMetricValue = (metric: UpdatePayload) => {
+export const updateMetricValue = (metric: UpdatePayload, userId: number) => {
   const index = data.Metrics.findIndex((m) => m.id === metric.id);
 
   if (index > -1) {
@@ -42,6 +42,36 @@ export const updateMetricValue = (metric: UpdatePayload) => {
       min: Math.min(data.Metrics[index].min, metric.value),
       max: Math.max(data.Metrics[index].max, metric.value),
     };
+
+    logChange(data.Metrics[index], userId);
     return data.Metrics[index];
   }
+};
+
+export const getChangeLog = (
+  limit: number = 10,
+  order: "asc" | "dsc" = "dsc"
+) => {
+  return data.MetricsChangeLog.slice(0, limit).sort((a, b) => {
+    if (order === "asc") {
+      return a.timestamp.getTime() - b.timestamp.getTime();
+    } else {
+      return b.timestamp.getTime() - a.timestamp.getTime();
+    }
+  });
+};
+
+const logChange = (metric: Metric, userId: number) => {
+  const log = {
+    id: data.MetricsChangeLog.length + 1,
+    userId,
+    metricId: metric.id,
+    metricName: metric.name,
+    value: metric.value,
+    previousValue: metric.value,
+    timestamp: new Date(),
+  };
+
+  data.MetricsChangeLog.push(log);
+  return log;
 };

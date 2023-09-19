@@ -25,3 +25,14 @@ function shutdown() {
     process.exit(1);
   }, 10_000);
 }
+
+// Log the number of open connections every 10 seconds
+setInterval(() => {
+  server.getConnections((err, count) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`📈 Open connections: ${count} 📈`);
+    }
+  });
+}, 10000);

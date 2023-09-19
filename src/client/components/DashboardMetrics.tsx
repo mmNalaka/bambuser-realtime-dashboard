@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, lazy } from "react"
+import React, { useState, lazy, useEffect } from "react"
 
 import { Metric } from "../../server/data/store"
 import { Button } from "./Button"
@@ -8,19 +8,19 @@ const AddNewMetric = lazy(() => import("./MetricAddModal"))
 const EditMetric = lazy(() => import("./MetricEditModal"))
 
 export const DashboardMetrics = () => {
-    const [data, setData] = React.useState<Metric[]>([])
-    const [loading, setLoading] = React.useState(true)
-    const [error, setError] = React.useState(false)
+    const [data, setData] = useState<Metric[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     const [selectedMetric, setSelectedMetric] = useState<Metric>()
     const [isAddNewOpen, setIsAddNewOpen] = useState(false)
     const [isEditOpen, setIsEditOpen] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         const eventSource = new EventSource("http://localhost:3000/api/metrics")
         eventSource.onmessage = e => {
             const parsedData = JSON.parse(e.data)
-            updateProductList(parsedData)
+            updateMetrics(parsedData)
             setLoading(false)
         }
         eventSource.onerror = () => {
@@ -30,7 +30,7 @@ export const DashboardMetrics = () => {
         }
     }, [])
 
-    const updateProductList = (product: any) => {
+    const updateMetrics = (product: any) => {
         setData([...product])
     }
 

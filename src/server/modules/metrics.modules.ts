@@ -3,6 +3,7 @@ import { Express, RequestHandler } from "express";
 import {
   UpdatePayload,
   createMetric,
+  getChangeLog,
   getMetricById,
   getMetrics,
   updateMetricValue,
@@ -119,7 +120,7 @@ export const updateMetricHandler: Handler =
         color: data.color || metric.color,
         unitSymbol: data.unitSymbol || metric.unitSymbol,
       };
-      updateMetricValue(updatePayload);
+      updateMetricValue(updatePayload, req.session.user!);
 
       res.status(200).json({ success: true, message: "Metric updated" });
       app.emit("metrics-updated");
@@ -127,3 +128,13 @@ export const updateMetricHandler: Handler =
       next(e);
     }
   };
+
+// GET /api/metrics/changelog
+export const getChangeLogHandler: RequestHandler = (_req, res, next) => {
+  try {
+    const logs = getChangeLog();
+    res.status(200).json({ success: true, data: logs });
+  } catch (e) {
+    next(e);
+  }
+};

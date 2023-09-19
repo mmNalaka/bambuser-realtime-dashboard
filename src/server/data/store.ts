@@ -23,6 +23,7 @@ export type MetricChangeLog = {
   id: number;
   userId: number;
   metricId: number;
+  metricName: string;
   value: number;
   previousValue: number;
   timestamp: Date;
@@ -84,30 +85,15 @@ const Metrics: Metric[] = [
   },
 ];
 
-const MetricsChangeLog = [
+const MetricsChangeLog: MetricChangeLog[] = [
   {
     id: 1,
     userId: 1,
     metricId: 1,
-    value: 0,
-    previousValue: 0,
-    timestamp: Date.now(),
-  },
-  {
-    id: 2,
-    userId: 1,
-    metricId: 2,
-    value: 0,
-    previousValue: 0,
-    timestamp: Date.now(),
-  },
-  {
-    id: 3,
-    userId: 1,
-    metricId: 3,
-    value: 0,
-    previousValue: 0,
-    timestamp: Date.now(),
+    metricName: "CPU",
+    value: 12,
+    previousValue: 12,
+    timestamp: new Date(),
   },
 ];
 
