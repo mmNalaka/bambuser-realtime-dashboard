@@ -59,7 +59,7 @@ export const DashboardMetricChangelog = () => {
                 {!loading && data && (
                     <div className="flex flex-col">
                         <table className="w-full table-auto">
-                            <thead className="text-sm uppercase border-b-2 divide-gray-200 text-slate-700">
+                            <thead className="text-sm border-b-2 divide-gray-200 text-slate-700">
                                 <tr className="text-left">
                                     <th className="pb-2">Timestamp</th>
                                     <th>Metric</th>
