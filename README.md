@@ -7,7 +7,7 @@ It uses server-sent events to stream data from the server to the client.
 ### Prerequisites
 Make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/)
-- [pnpm](https://pnpm.js.org/en/installation)
+- [pnpm](https://pnpm.io)
 
 ### Install dependencies
 ```sh
