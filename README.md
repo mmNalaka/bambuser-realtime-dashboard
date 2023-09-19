@@ -24,3 +24,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Project structure
 - `src/client` - Client-side code
 - `src/server` - Server-side code
+
+### Features
+- [x] Server-sent events
+- [x] Responsive design
+- [x] Realtime updates
+- [x] History (change log)
+- [x] Authentication
+- [x] Basic security
+- [x] Login and Signup 
