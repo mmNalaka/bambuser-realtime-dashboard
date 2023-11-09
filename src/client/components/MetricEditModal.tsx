@@ -81,8 +81,7 @@ const MetricEditModal = ({ isOpen, closeModal, selectedMetric }: Props) => {
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        Your payment has been successfully submitted. We’ve sent
-                                        you an email with all of the details of your order.
+                                        Edit this metric, all the users logged in will be able to see the update in realtime.
                                     </p>
                                 </div>
 

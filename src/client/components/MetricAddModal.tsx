@@ -76,8 +76,7 @@ const MetricAddModal = ({ isOpen, closeModal }: Props) => {
                                 </Dialog.Title>
                                 <div className="mt-2">
                                     <p className="text-sm text-gray-500">
-                                        Your payment has been successfully submitted. We’ve sent
-                                        you an email with all of the details of your order.
+                                        Add new metric to your dashboard
                                     </p>
                                 </div>
 
